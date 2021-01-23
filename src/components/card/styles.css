@@ -1,4 +1,4 @@
-.flip-container{
+/* .flip-container{
     perspective: 1000px;
     display: inline-block;
     border: 1px solid white;
@@ -30,4 +30,4 @@
 
 .front{
     transform:rotateY(180deg)
-}
+} */
