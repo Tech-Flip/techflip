@@ -68,7 +68,7 @@ export default function App() {
     );
   };
   return (
-    <View style={{ width: "100%" }}>
+    <View style={{ width: "100%", alignItems: "center" }}>
       <Text> Can You Remember Where The Cards Are?</Text>
       <Board
         dimension={dimension}

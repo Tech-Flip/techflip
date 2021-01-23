@@ -19,6 +19,7 @@ export default function Card({
   height,
   width,
   solved,
+  disabled,
 }) {
   return (
     <View
@@ -48,16 +49,17 @@ Card.propTypes = {
 
 const styles = StyleSheet.create({
   flipContainer: {
-    perspective: "1000px",
-    display: "inline-block",
-    border: "1px solid white",
+    display: "flex",
+    borderColor: "white",
+    borderStyle: "solid",
+    borderWidth: 1,
     backgroundColor: "#0000",
     width: "100px",
     height: "100px",
   },
 
   flipContainerFlipped: {
-    transform: "rotateY(180deg)",
+    transform: [{ rotateY: "180deg" }],
   },
 
   flipper: {
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
     width: "100px",
     height: "100px",
-    transform: "rotateY(0deg)",
+    transform: [{ rotateY: "0deg" }],
     backfaceVisibility: "hidden",
     position: "absolute",
     left: 0,
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
   front: {
     width: "100px",
     height: "100px",
-    transform: "rotateY(180deg)",
+    transform: [{ rotateY: "180deg" }],
     backfaceVisibility: "hidden",
     position: "absolute",
     left: 0,
