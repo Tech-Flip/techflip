@@ -37,7 +37,13 @@ export default function Card({
       style={styles.flipContainer}
       onClick={() => (disabled ? null : handleClick(id))}
     >
-      <View style={flipped ? styles.flipContainerFlipped : styles.flipper}>
+      <View
+        style={
+          flipped
+            ? [styles.flipContainerFlipped, styles.flipper]
+            : styles.flipper
+        }
+      >
         <Image
           style={flipped ? styles.front : styles.back}
           source={flipped || solved ? front[type] : back}

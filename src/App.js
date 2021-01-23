@@ -72,12 +72,15 @@ export default function App() {
     setFlipped([]);
     setDisabled(false);
   };
+
   const sameCardClicked = (id) => flipped.includes(id);
+
   const isMatch = (id) => {
     const flippedCard = cards.find((card) => flipped[0] === card.id);
     const clickedCard = cards.find((card) => card.id === id);
     return flippedCard.type === clickedCard.type;
   };
+
   const resizeBoard = () => {
     setDimension(
       Math.min(
