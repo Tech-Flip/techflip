@@ -35,7 +35,7 @@ export default function Card({
   return (
     <View
       style={styles.flipContainer}
-      onClick={() => (disabled ? null : handleClick(id))}
+      onPress={() => (disabled ? null : handleClick(id))}
     >
       <View
         style={
@@ -66,6 +66,7 @@ Card.propTypes = {
 
 const styles = StyleSheet.create({
   flipContainer: {
+    transform: [{ perspective: 750 }],
     display: "flex",
     borderColor: "white",
     borderStyle: "solid",
@@ -80,8 +81,8 @@ const styles = StyleSheet.create({
   },
 
   flipper: {
-    transition: "0.6s",
-    transformStyle: "preserve-3d",
+    // transition: "0.6s",
+    //transformStyle: "preserve-3d",
     position: "relative",
   },
 
