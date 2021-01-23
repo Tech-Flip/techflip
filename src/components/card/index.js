@@ -49,7 +49,6 @@ Card.propTypes = {
 
 const styles = StyleSheet.create({
   flipContainer: {
-    perspective: "1000px",
     display: "inline-block",
     border: "1px solid white",
     backgroundColor: "#0000",
