@@ -1,8 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, StyleSheet, Image } from "react-native";
-import "./styles.css";
-// import "../../../public";
+import back from "../../../public/img/back.png";
+import css from "../../../public/img/css.png";
+import fullstack from "../../../public/img/fullstack.png";
+import js from "../../../public/img/js.png";
+import node from "../../../public/img/node.png";
+import postman from "../../../public/img/postman.png";
+import redux from "../../../public/img/redux.png";
+import sql from "../../../public/img/sql.png";
+import react from "../../../public/img/react.png";
 
 export default function Card({
   handleClick,
@@ -15,15 +22,13 @@ export default function Card({
 }) {
   return (
     <View
-      className={`flipContainer ${flipped ? "flipped" : ""}`}
-      style={{ width, height }}
+      style={styles.flipContainer}
       onClick={() => (disabled ? null : handleClick(id))}
     >
-      <View className="flipper">
+      <View style={flipped ? styles.flipContainerFlipped : styles.flipper}>
         <Image
-          style={{ height, width }}
-          className={flipped ? "front" : "back"}
-          src={flipped || solved ? `/img/${type}.png` : `/img/back.png`}
+          style={flipped ? styles.front : styles.back}
+          source={flipped || solved ? type : back}
         />
       </View>
     </View>
@@ -46,10 +51,12 @@ const styles = StyleSheet.create({
     perspective: "1000px",
     display: "inline-block",
     border: "1px solid white",
-    background: "#000000",
+    backgroundColor: "#0000",
+    width: "100px",
+    height: "100px",
   },
 
-  flipContainer_flipped_flipper: {
+  flipContainerFlipped: {
     transform: "rotateY(180deg)",
   },
 
@@ -59,19 +66,24 @@ const styles = StyleSheet.create({
     position: "relative",
   },
 
-  front_back: {
+  back: {
+    zIndex: 2,
+    width: "100px",
+    height: "100px",
+    transform: "rotateY(0deg)",
     backfaceVisibility: "hidden",
     position: "absolute",
     left: 0,
     top: 0,
   },
 
-  back: {
-    zIndex: 2,
-    transform: "rotateY(0deg)",
-  },
-
   front: {
+    width: "100px",
+    height: "100px",
     transform: "rotateY(180deg)",
+    backfaceVisibility: "hidden",
+    position: "absolute",
+    left: 0,
+    top: 0,
   },
 });
