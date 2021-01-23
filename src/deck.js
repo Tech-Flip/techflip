@@ -18,7 +18,7 @@ export default function initializeDeck() {
     "redux",
     "postman",
     "sql",
-    "javascript",
+    "js",
     "node",
     "fullstack",
   ].reduce((acc, type) => {

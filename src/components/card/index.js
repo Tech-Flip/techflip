@@ -11,6 +11,17 @@ import redux from "../../../public/img/redux.png";
 import sql from "../../../public/img/sql.png";
 import react from "../../../public/img/react.png";
 
+const front = {
+  css,
+  fullstack,
+  js,
+  node,
+  postman,
+  redux,
+  sql,
+  react,
+};
+
 export default function Card({
   handleClick,
   id,
@@ -29,7 +40,7 @@ export default function Card({
       <View style={flipped ? styles.flipContainerFlipped : styles.flipper}>
         <Image
           style={flipped ? styles.front : styles.back}
-          source={flipped || solved ? type : back}
+          source={flipped || solved ? front[type] : back}
         />
       </View>
     </View>

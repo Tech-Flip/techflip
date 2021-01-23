@@ -2,6 +2,25 @@ import React, { useState, useEffect } from "react";
 import Board from "./components/board";
 import initializeDeck from "./deck";
 import { View, Text } from "react-native";
+import sql from "../public/img/sql.png";
+import css from "../public/img/css.png";
+import fullstack from "../public/img/fullstack.png";
+import js from "../public/img/js.png";
+import node from "../public/img/node.png";
+import postman from "../public/img/postman.png";
+import redux from "../public/img/redux.png";
+import react from "../public/img/react.png";
+
+const front = {
+  css,
+  fullstack,
+  js,
+  node,
+  postman,
+  redux,
+  sql,
+  react,
+};
 
 export default function App() {
   const [flipped, setFlipped] = useState([]);
@@ -37,14 +56,14 @@ export default function App() {
         setSolved([...solved, flipped[0], id]);
         resetCards();
       } else {
-        setTimeout(resetCards, 2000);
+        setTimeout(resetCards, 1000);
       }
     }
   };
 
   const preloadImages = () => {
     cards.map((card) => {
-      const src = `/img/${card.type}.png`;
+      const src = front[card.type];
       new Image().src = src;
     });
   };

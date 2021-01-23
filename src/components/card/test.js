@@ -1,8 +1,10 @@
+
 import React, { useRef, useState } from "react";
 import { View, StyleSheet, Animated, KeyboardAvoidingView } from "react-native";
 import { Button } from "react-native-paper";
 import FlipCard from "../components/FlipCard";
-const Word: React.FC = () => {
+
+const Word = () => {
   const animate = useRef(new Animated.Value(0));
   const [isFlipped, setIsFlipped] = useState(false);
   const [front, setFront] = useState("");
