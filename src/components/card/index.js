@@ -14,19 +14,19 @@ export default function Card({
   solved,
 }) {
   return (
-    <div
+    <View
       className={`flipContainer ${flipped ? "flipped" : ""}`}
       style={{ width, height }}
       onClick={() => (disabled ? null : handleClick(id))}
     >
-      <div className="flipper">
+      <View className="flipper">
         <Image
           style={{ height, width }}
           className={flipped ? "front" : "back"}
           src={flipped || solved ? `/img/${type}.png` : `/img/back.png`}
         />
-      </div>
-    </div>
+      </View>
+    </View>
   );
 }
 

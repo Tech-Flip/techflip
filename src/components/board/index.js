@@ -12,7 +12,7 @@ export default function Board({
   handleClick,
 }) {
   return (
-    <div className="board" style={styles}>
+    <View className="board" style={styles.body}>
       {cards.map((card) => (
         <Card
           key={card.id}
@@ -26,7 +26,7 @@ export default function Board({
           disabled={disabled || solved.includes(card.id)}
         />
       ))}
-    </div>
+    </View>
   );
 }
 
@@ -42,6 +42,7 @@ Board.propTypes = {
 const styles = StyleSheet.create({
   body: {
     width: "100%",
+    backgroundColor: "orange",
   },
   board: {
     marging: "0px",
