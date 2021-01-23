@@ -50,7 +50,10 @@ export default function App() {
       setFlipped([id]);
       setDisabled(false);
     } else {
-      if (sameCardClicked(id)) return;
+      if (sameCardClicked(id)) {
+        setDisabled(false);
+        return;
+      }
       setFlipped([flipped[0], id]);
       if (isMatch(id)) {
         setSolved([...solved, flipped[0], id]);
