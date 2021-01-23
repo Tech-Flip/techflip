@@ -19,6 +19,7 @@ export default function Card({
   height,
   width,
   solved,
+  disabled,
 }) {
   return (
     <View
