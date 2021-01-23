@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Board from "./components/board";
 import initializeDeck from "./deck";
+import { View, Text } from "react-native";
 
 export default function App() {
   const [flipped, setFlipped] = useState([]);
@@ -67,8 +68,8 @@ export default function App() {
     );
   };
   return (
-    <div>
-      <h2> Can You Remember Where The Cards Are?</h2>
+    <View style={{ width: "100%" }}>
+      <Text> Can You Remember Where The Cards Are?</Text>
       <Board
         dimension={dimension}
         cards={cards}
@@ -77,6 +78,6 @@ export default function App() {
         disabled={disabled}
         solved={solved}
       />
-    </div>
+    </View>
   );
 }

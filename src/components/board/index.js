@@ -12,7 +12,7 @@ export default function Board({
   handleClick,
 }) {
   return (
-    <View className="board" style={styles.body}>
+    <View style={styles.body}>
       {cards.map((card) => (
         <Card
           key={card.id}
@@ -41,10 +41,6 @@ Board.propTypes = {
 
 const styles = StyleSheet.create({
   body: {
-    width: "100%",
-    backgroundColor: "orange",
-  },
-  board: {
     marging: "0px",
     padding: "0px",
   },
