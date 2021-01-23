@@ -53,8 +53,8 @@ export default function App() {
     setFlipped([]);
     setDisabled(false);
   };
-  const sameCardClicked = () => flipped.includes(id);
-  const isMatch = () => {
+  const sameCardClicked = (id) => flipped.includes(id);
+  const isMatch = (id) => {
     const flippedCard = cards.find((card) => flipped[0] === card.id);
     const clickedCard = cards.find((card) => card.id === id);
     return flippedCard.type === clickedCard.type;
@@ -69,7 +69,7 @@ export default function App() {
   };
   return (
     <View style={{ width: "100%", alignItems: "center" }}>
-      <Text> Can You Remember Where The Cards Are?</Text>
+      <Text>Can You Remember Where The Cards Are?</Text>
       <Board
         dimension={dimension}
         cards={cards}
