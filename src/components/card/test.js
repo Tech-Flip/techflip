@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from "react";
 import { View, StyleSheet, Animated, KeyboardAvoidingView } from "react-native";
 import { Button } from "react-native-paper";
@@ -6,33 +5,33 @@ import FlipCard from "../components/FlipCard";
 
 const Word = () => {
   const animate = useRef(new Animated.Value(0));
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [front, setFront] = useState("");
-  const [back, setBack] = useState("");
-  const frontRef = useRef();
-  const backRef = useRef();
+  const frontRef = useRef({});
+  const backRef = useRef({});
+
   const doAFlip = () => {
     Animated.timing(animate.current, {
       duration: 300,
-      toValue: isFlipped ? 0 : 180,
+      toValue: flipped ? 0 : 180,
       useNativeDriver: true,
     }).start(() => {
-      if (isFlipped) {
+      if (flipped) {
         frontRef.current.focus();
       } else {
         backRef.current.focus();
       }
-      setIsFlipped(!isFlipped);
+      flipped = !flipped;
     });
   };
+
   const interpolatedValueFront = animate.current.interpolate({
     inputRange: [0, 180],
     outputRange: ["0deg", "180deg"],
   });
   const interpolatedValueBack = animate.current.interpolate({
     inputRange: [0, 180],
-    outputRange: ["180deg", "360deg"],
+    outputRange: ["180deg", "0deg"],
   });
+
   const rotateFront = {
     transform: [
       {
@@ -48,28 +47,18 @@ const Word = () => {
     ],
   };
   return (
-    <KeyboardAvoidingView behavior="padding" style={styles.container}>
-      <View>
-        <Animated.View style={[styles.hidden, rotateFront]}>
-          <FlipCard
-            title="Front"
-            inputRef={frontRef}
-            onChange={(value) => setFront(value)}
-            value={front}
-            autoFocus={true}
-          />
-        </Animated.View>
-        <Animated.View style={[styles.hidden, styles.back, rotateBack]}>
-          <FlipCard
-            title="Back"
-            inputRef={backRef}
-            onChange={(value) => setBack(value)}
-            value={back}
-          />
-        </Animated.View>
-        <Button onPress={doAFlip}>Flip</Button>
-      </View>
-    </KeyboardAvoidingView>
+    <View
+      onPress={doAFlip}
+      style={styles.flipContainer}
+      onClick={() => (disabled ? null : handleClick(id))}
+    >
+      <Animated.View style={[styles.front, rotateFront]}>
+        <FlipCard title="Front" inputRef={frontRef} autoFocus={true} />
+      </Animated.View>
+      <Animated.View style={[styles.back, rotateBack]}>
+        <FlipCard title="Back" inputRef={backRef} />
+      </Animated.View>
+    </View>
   );
 };
 const styles = StyleSheet.create({

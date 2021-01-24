@@ -30,19 +30,8 @@ export default function App() {
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
-    resizeBoard();
     setCards(initializeDeck());
   }, []);
-
-  useEffect(() => {
-    preloadImages();
-  });
-
-  useEffect(() => {
-    const resizeListener = window.addEventListener("resize", resizeBoard);
-
-    return () => window.removeEventListener("resize", resizeListener);
-  });
 
   const handleClick = (id) => {
     setDisabled(true);
@@ -64,13 +53,6 @@ export default function App() {
     }
   };
 
-  const preloadImages = () => {
-    cards.map((card) => {
-      const src = front[card.type];
-      new Image().src = src;
-    });
-  };
-
   const resetCards = () => {
     setFlipped([]);
     setDisabled(false);
@@ -84,14 +66,6 @@ export default function App() {
     return flippedCard.type === clickedCard.type;
   };
 
-  const resizeBoard = () => {
-    setDimension(
-      Math.min(
-        document.documentElement.clientWidth,
-        document.documentElement.clientHeight
-      )
-    );
-  };
   return (
     <View style={{ width: "100%", alignItems: "center" }}>
       <Text>Can You Remember Where The Cards Are?</Text>
