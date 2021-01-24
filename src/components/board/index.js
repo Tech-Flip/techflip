@@ -41,7 +41,7 @@ Board.propTypes = {
 
 const styles = StyleSheet.create({
   body: {
-    margin: "0px",
+    margin: "20px",
     padding: "100",
     display: "flex",
     flexWrap: "wrap",
