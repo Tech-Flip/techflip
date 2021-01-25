@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Board from "./components/board";
 import initializeDeck from "./deck";
-import { Button, View, Text } from "react-native";
+import { Button, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import sql from "../public/img/sql.png";
 import css from "../public/img/css.png";
 import fullstack from "../public/img/fullstack.png";
@@ -32,11 +32,8 @@ export default function App() {
   const [level, setLevel] = useState("easy");
   // const [gameOver, setGameOver] = useState([]);
 
-
   useEffect(() => {
     setCards(initializeDeck(level));
-    console.log("this is the level inside the useEffect", level);
-    console.log(setCards(initializeDeck(level)));
   }, [level]);
 
   const handleClick = (id) => {
@@ -54,18 +51,17 @@ export default function App() {
         setSolved([...solved, flipped[0], id]);
         resetCards();
       } else {
-        setTimeout(resetCards, 1000);
+        setTimeout(resetCards, 300);
       }
     }
 
-  // const gameOverAlert = () => {
-  //   if (solved.length === cards.length) {
-  //     alert("You have won! Click to restart");
-  //     setGameOver([...solved]);
-  //     resetCards();
-  //   }
-  // };
-
+    // const gameOverAlert = () => {
+    //   if (solved.length === cards.length) {
+    //     alert("You have won! Click to restart");
+    //     setGameOver([...solved]);
+    //     resetCards();
+    //   }
+    // };
   };
 
   const resetCards = () => {
@@ -87,33 +83,16 @@ export default function App() {
     setSolved([]);
     setCards(initializeDeck());
   };
-  
 
   return (
-    <View style={{ width: "100%", alignItems: "center" }}>
-      <Text style={{ alignText: "center", fontFamily: "monospace" }}>
-        <span
-          style={{
-            fontWeight: "bold",
-            color: "red",
-            fontSize: 30,
-          }}
-        >
-          Flip
-        </span>
-        &nbsp;
-        <span style={{ fontWeight: "bold", color: "black", fontSize: 30 }}>
-          Stacks
-        </span>
-        &nbsp; &nbsp;
-        <span style={{ fontWeight: "bold", color: "red", fontSize: 30 }}>
-          Create
-        </span>
-        &nbsp;
-        <span style={{ fontWeight: "bold", color: "black", fontSize: 30 }}>
-          Matches!
-        </span>
-      </Text>
+    <View
+      style={{
+        width: "100%",
+        height: "100%",
+        alignItems: "center",
+        backgroundColor: "honeydew",
+      }}
+    >
       <View
         style={{
           display: "flex",
@@ -121,7 +100,25 @@ export default function App() {
           margin: 20,
         }}
       >
-        <Button
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "mediumseagreen" }]}
+          onPress={() => setLevel("easy")}
+        >
+          <Text style={styles.appButtonText}> Easy</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "darkorange" }]}
+          onPress={() => setLevel("medium")}
+        >
+          <Text style={styles.appButtonText}> Medium </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "crimson" }]}
+          onPress={() => setLevel("hard")}
+        >
+          <Text style={styles.appButtonText}> Hard </Text>
+        </TouchableOpacity>
+        {/* <Button
           color="green"
           title="easy"
           onPress={() => setLevel("easy")}
@@ -132,9 +129,8 @@ export default function App() {
           title="medium"
           onPress={() => setLevel("medium")}
         />
-        <Button color="red" title="hard" onPress={() => setLevel("hard")} />
+        <Button color="red" title="hard" onPress={() => setLevel("hard")} /> */}
       </View>
-
       <Board
         cards={cards}
         flipped={flipped}
@@ -153,3 +149,16 @@ export default function App() {
     </View>
   );
 }
+const styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+    padding: 10,
+  },
+  appButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase",
+  },
+});

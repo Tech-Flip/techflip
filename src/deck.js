@@ -3,8 +3,8 @@ import { changeLevel, level } from "./components/Start";
 
 function shuffle(array, level) {
   let selectedLevel = level;
-  let easyCards = [...array].slice(0, 18);
-  let mediumCards = [...array].slice(0, 24);
+  let easyCards = [...array].slice(0, 16);
+  let mediumCards = [...array].slice(0, 20);
   let hardCards = [...array];
 
   if (selectedLevel === "easy") {
@@ -45,16 +45,11 @@ export default function initializeDeck(level) {
     "js",
     "node",
     "fullstack",
-    "firebase",
-    "java",
-    "jquery",
-    "mongodb",
+
     "postgres",
-    "redis",
-    "requirejs",
-    "swift",
-    "webpack",
+    "jquery",
     "github",
+    "webpack",
   ].reduce((acc, type) => {
     acc.push({ id: id++, type });
     acc.push({ id: id++, type });
