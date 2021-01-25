@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Board from "./components/board";
 import initializeDeck from "./deck";
-import { View, Text } from "react-native";
+import { Button, View, Text } from "react-native";
 import sql from "../public/img/sql.png";
 import css from "../public/img/css.png";
 import fullstack from "../public/img/fullstack.png";
@@ -10,6 +10,7 @@ import node from "../public/img/node.png";
 import postman from "../public/img/postman.png";
 import redux from "../public/img/redux.png";
 import react from "../public/img/react.png";
+import ResetButton from "./components/ResetButton";
 
 const front = {
   css,
@@ -25,13 +26,18 @@ const front = {
 export default function App() {
   const [flipped, setFlipped] = useState([]);
   const [cards, setCards] = useState([]);
-  const [dimension, setDimension] = useState(400);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
+  const [playable, setPlayable] = useState(true);
+  const [level, setLevel] = useState("easy");
+  // const [gameOver, setGameOver] = useState([]);
+
 
   useEffect(() => {
-    setCards(initializeDeck());
-  }, []);
+    setCards(initializeDeck(level));
+    console.log("this is the level inside the useEffect", level);
+    console.log(setCards(initializeDeck(level)));
+  }, [level]);
 
   const handleClick = (id) => {
     setDisabled(true);
@@ -51,8 +57,15 @@ export default function App() {
         setTimeout(resetCards, 1000);
       }
     }
-    console.log("flipped", flipped);
-    console.log("solved", solved);
+
+  // const gameOverAlert = () => {
+  //   if (solved.length === cards.length) {
+  //     alert("You have won! Click to restart");
+  //     setGameOver([...solved]);
+  //     resetCards();
+  //   }
+  // };
+
   };
 
   const resetCards = () => {
@@ -68,16 +81,74 @@ export default function App() {
     return flippedCard.type === clickedCard.type;
   };
 
+  const playAgain = () => {
+    setPlayable(true);
+    setFlipped([]);
+    setSolved([]);
+    setCards(initializeDeck());
+  };
+  
+
   return (
     <View style={{ width: "100%", alignItems: "center" }}>
-      <Text>Can You Remember Where The Cards Are?</Text>
+      <Text style={{ alignText: "center", fontFamily: "monospace" }}>
+        <span
+          style={{
+            fontWeight: "bold",
+            color: "red",
+            fontSize: 30,
+          }}
+        >
+          Flip
+        </span>
+        &nbsp;
+        <span style={{ fontWeight: "bold", color: "black", fontSize: 30 }}>
+          Stacks
+        </span>
+        &nbsp; &nbsp;
+        <span style={{ fontWeight: "bold", color: "red", fontSize: 30 }}>
+          Create
+        </span>
+        &nbsp;
+        <span style={{ fontWeight: "bold", color: "black", fontSize: 30 }}>
+          Matches!
+        </span>
+      </Text>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          margin: 20,
+        }}
+      >
+        <Button
+          color="green"
+          title="easy"
+          onPress={() => setLevel("easy")}
+          testID="easy"
+        />
+        <Button
+          color="orange"
+          title="medium"
+          onPress={() => setLevel("medium")}
+        />
+        <Button color="red" title="hard" onPress={() => setLevel("hard")} />
+      </View>
+
       <Board
-        dimension={dimension}
         cards={cards}
         flipped={flipped}
         handleClick={handleClick}
         disabled={disabled}
         solved={solved}
+        level={level}
+        // gameOver={gameOver}
+      />
+      <ResetButton
+        numSolved={flipped.length}
+        numCards={cards.length}
+        setPlayable={setPlayable}
+        playAgain={playAgain}
       />
     </View>
   );

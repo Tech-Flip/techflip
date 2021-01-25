@@ -17,6 +17,16 @@ import postman from "../../../public/img/postman.png";
 import redux from "../../../public/img/redux.png";
 import sql from "../../../public/img/sql.png";
 import react from "../../../public/img/react.png";
+import firebase from "../../../public/img/firebase.png";
+import java from "../../../public/img/java.png";
+import jquery from "../../../public/img/jquery.png";
+import mongodb from "../../../public/img/mongodb.png";
+import postgres from "../../../public/img/postgres.png";
+import redis from "../../../public/img/redis.png";
+import requirejs from "../../../public/img/requirejs.png";
+import swift from "../../../public/img/swift.png";
+import webpack from "../../../public/img/webpack.png";
+import github from "../../../public/img/github.png";
 
 const front = {
   css,
@@ -27,6 +37,16 @@ const front = {
   redux,
   sql,
   react,
+  firebase,
+  java,
+  jquery,
+  mongodb,
+  postgres,
+  redis,
+  requirejs,
+  swift,
+  webpack,
+  github,
 };
 
 export default function Card({
