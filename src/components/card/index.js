@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { View, StyleSheet, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Animated,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import back from "../../../public/img/back.png";
 import css from "../../../public/img/css.png";
 import fullstack from "../../../public/img/fullstack.png";
@@ -52,25 +59,101 @@ export default function Card({
   solved,
   disabled,
 }) {
+  const animate = useRef(new Animated.Value(0));
+  const frontRef = useRef({});
+  const backRef = useRef({});
+
+  const onClick = () => {
+    handleClick(id);
+
+    console.log("Before:id,flip,sol", id, flipped, solved);
+  };
+
+  useEffect(() => {
+    doAFlip();
+  }, [flipped, solved]);
+
+  const doAFlip = () => {
+    console.log("After: id,flip,sol", id, flipped, solved);
+    Animated.timing(animate.current, {
+      duration: 300,
+      toValue: 180,
+      useNativeDriver: true,
+    }).start(() => afterFlip());
+  };
+
+  const afterFlip = () => {
+    if (!flipped) {
+      Animated.timing(animate.current, {
+        duration: 300,
+        toValue: 0,
+        useNativeDriver: true,
+      }).start();
+    }
+    if (solved) {
+      Animated.timing(animate.current, {
+        duration: 300,
+        toValue: 180,
+        useNativeDriver: true,
+      }).start();
+    }
+  };
+
+  const interpolatedValueFront = animate.current.interpolate({
+    inputRange: [0, 180],
+    outputRange: ["0deg", "180deg"],
+  });
+  const interpolatedValueBack = animate.current.interpolate({
+    inputRange: [0, 180],
+    outputRange: ["180deg", "0deg"],
+  });
+
+  const rotateFront = {
+    transform: [
+      {
+        rotateY: interpolatedValueFront,
+      },
+    ],
+  };
+  const rotateBack = {
+    transform: [
+      {
+        rotateY: interpolatedValueBack,
+      },
+    ],
+  };
   return (
-    <View
-      style={styles.flipContainer}
-      onClick={() => (disabled ? null : handleClick(id))}
-    >
-      <View
-        style={
-          flipped
-            ? [styles.flipContainerFlipped, styles.flipper]
-            : styles.flipper
-        }
-      >
-        <Image
-          style={flipped ? styles.front : styles.back}
-          source={flipped || solved ? front[type] : back}
-        />
-      </View>
+    <View style={styles.flipContainer}>
+      <TouchableOpacity onPress={() => (disabled ? null : onClick())}>
+        <Animated.View style={[styles.front, rotateFront]}>
+          <Image title="Back" style={styles.front} source={back} />
+        </Animated.View>
+        <Animated.View style={[styles.back, rotateBack]}>
+          <Image title="Front" style={styles.back} source={front[type]} />
+        </Animated.View>
+      </TouchableOpacity>
     </View>
   );
+
+  // return (
+  //   <View
+  //     style={styles.flipContainer}
+  //     onClick={() => (disabled ? null : handleClick(id))}
+  //   >
+  //     <View
+  //       style={
+  //         flipped
+  //           ? [styles.flipContainerFlipped, styles.flipper]
+  //           : styles.flipper
+  //       }
+  //     >
+  //       <Image
+  //         style={flipped ? styles.front : styles.back}
+  //         source={flipped || solved ? front[type] : back}
+  //       />
+  //     </View>
+  //   </View>
+  // );
 }
 
 Card.propTypes = {
@@ -97,12 +180,12 @@ const styles = StyleSheet.create({
   },
 
   flipContainerFlipped: {
-    transform: [{ rotateY: "180deg" }],
+    // transform: [{ rotateY: "180deg" }],
   },
 
   flipper: {
-    transition: "0.6s",
-    transformStyle: "preserve-3d",
+    // transition: "0.6s",
+    // transformStyle: "preserve-3d",
     position: "relative",
   },
 
@@ -110,7 +193,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
     width: 100,
     height: 100,
-    transform: [{ rotateY: "0deg" }],
+    // transform: [{ rotateY: "0deg" }],
     backfaceVisibility: "hidden",
     position: "absolute",
     left: 0,
@@ -120,9 +203,9 @@ const styles = StyleSheet.create({
   front: {
     width: 100,
     height: 100,
-    transform: [{ rotateY: "180deg" }],
+    // transform: [{ rotateY: "180deg" }],
     backfaceVisibility: "hidden",
-    position: "absolute",
+    // position: "absolute",
     left: 0,
     top: 0,
   },
