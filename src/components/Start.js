@@ -1,6 +1,5 @@
-import React from "react";
 import { View, Button, StyleSheet, Image } from "react-native";
-
+import React from "react";
 const Start = ({ navigation }) => {
   return (
     <View style={styles.body}>
@@ -37,6 +36,7 @@ const styles = StyleSheet.create({
   body: {
     textAlign: "center",
     fontFamily: "monospace",
+    display: "flex",
     margin: 20,
     padding: "100",
     alignItems: "center",

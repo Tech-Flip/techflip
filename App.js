@@ -6,12 +6,13 @@ import Game from "./src/App";
 import Start from "./src/components/Start";
 
 const Stack = createStackNavigator();
+
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="Game" component={Game} />
+        <Stack.Screen name="Start" component={Start} />
       </Stack.Navigator>
     </NavigationContainer>
   );

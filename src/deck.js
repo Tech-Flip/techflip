@@ -1,10 +1,13 @@
-function shuffle(array) {
-  let level = "hard";
+import React, { useState } from "react";
+import { changeLevel, level } from "./components/Start";
+
+function shuffle(array, level) {
+  let selectedLevel = level;
   let easyCards = [...array].slice(0, 18);
   let mediumCards = [...array].slice(0, 24);
   let hardCards = [...array];
 
-  if (level === "easy") {
+  if (selectedLevel === "easy") {
     for (let i = 0; i < easyCards.length - 1; i++) {
       let randomIndex = Math.floor(Math.random() * (i + 1));
       let temp = easyCards[i];
@@ -12,7 +15,7 @@ function shuffle(array) {
       easyCards[randomIndex] = temp;
     }
     return easyCards;
-  } else if (level === "medium") {
+  } else if (selectedLevel === "medium") {
     for (let i = 0; i < mediumCards.length - 1; i++) {
       let randomIndex = Math.floor(Math.random() * (i + 1));
       let temp = mediumCards[i];
@@ -31,7 +34,7 @@ function shuffle(array) {
   }
 }
 
-export default function initializeDeck() {
+export default function initializeDeck(level) {
   let id = 0;
   const cards = [
     "react",
@@ -57,5 +60,5 @@ export default function initializeDeck() {
     acc.push({ id: id++, type });
     return acc;
   }, []);
-  return shuffle(cards);
+  return shuffle(cards, level);
 }

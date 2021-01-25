@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Board from "./components/board";
 import initializeDeck from "./deck";
 import { Button, View, Text } from "react-native";
-// import Modal from "react-native-modal";
 import sql from "../public/img/sql.png";
 import css from "../public/img/css.png";
 import fullstack from "../public/img/fullstack.png";
@@ -27,10 +26,10 @@ const front = {
 export default function App() {
   const [flipped, setFlipped] = useState([]);
   const [cards, setCards] = useState([]);
-  const [dimension, setDimension] = useState(400);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [playable, setPlayable] = useState(true);
+  const [level, setLevel] = useState("easy");
   // const [gameOver, setGameOver] = useState([]);
 
   console.log("cards flipped", flipped);
@@ -39,8 +38,10 @@ export default function App() {
   console.log("this is the flipped length", flipped.length);
 
   useEffect(() => {
-    setCards(initializeDeck());
-  }, []);
+    setCards(initializeDeck(level));
+    console.log("this is the level inside the useEffect", level);
+    console.log(setCards(initializeDeck(level)));
+  }, [level]);
 
   useEffect(() => {
     preloadImages();
@@ -100,7 +101,7 @@ export default function App() {
     setSolved([]);
     setCards(initializeDeck());
   };
-
+  console.log("the current level is", level);
   return (
     <View style={{ width: "100%", alignItems: "center" }}>
       <Text style={{ alignText: "center", fontFamily: "monospace" }}>
@@ -126,13 +127,34 @@ export default function App() {
           Matches!
         </span>
       </Text>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          margin: 20,
+        }}
+      >
+        <Button
+          color="green"
+          title="easy"
+          onPress={() => setLevel("easy")}
+          testID="easy"
+        />
+        <Button
+          color="orange"
+          title="medium"
+          onPress={() => setLevel("medium")}
+        />
+        <Button color="red" title="hard" onPress={() => setLevel("hard")} />
+      </View>
+
       <Board
-        dimension={dimension}
         cards={cards}
         flipped={flipped}
         handleClick={handleClick}
         disabled={disabled}
         solved={solved}
+        level={level}
         // gameOver={gameOver}
       />
       <ResetButton
