@@ -51,6 +51,8 @@ export default function App() {
         setTimeout(resetCards, 1000);
       }
     }
+    console.log("flipped", flipped);
+    console.log("solved", solved);
   };
 
   const resetCards = () => {

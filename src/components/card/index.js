@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import {
   View,
@@ -43,15 +43,18 @@ export default function Card({
   const frontRef = useRef({});
   const backRef = useRef({});
 
-  const onClick = async () => {
-    await handleClick(id);
+  const onClick = () => {
+    handleClick(id);
 
-    doAFlip();
-    console.log("first:id,flip,sol", id, flipped, solved);
+    console.log("Before:id,flip,sol", id, flipped, solved);
   };
 
+  useEffect(() => {
+    doAFlip();
+  }, [flipped, solved]);
+
   const doAFlip = () => {
-    console.log("id,flip,sol", id, flipped, solved);
+    console.log("After: id,flip,sol", id, flipped, solved);
     Animated.timing(animate.current, {
       duration: 300,
       toValue: 180,
@@ -64,6 +67,13 @@ export default function Card({
       Animated.timing(animate.current, {
         duration: 300,
         toValue: 0,
+        useNativeDriver: true,
+      }).start();
+    }
+    if (solved) {
+      Animated.timing(animate.current, {
+        duration: 300,
+        toValue: 180,
         useNativeDriver: true,
       }).start();
     }
