@@ -41,15 +41,14 @@ Board.propTypes = {
 
 const styles = StyleSheet.create({
   body: {
-    margin: "20px",
+    margin: 20,
     padding: "100",
-    display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
     flexDirection: "row",
-    width: "25%",
+    width: 600,
+    flex: "1 1 1",
     alignItems: "center",
     alignContent: "space-between",
-    width: "450px",
   },
 });

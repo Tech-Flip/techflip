@@ -11,7 +11,7 @@ import node from "../public/img/node.png";
 import postman from "../public/img/postman.png";
 import redux from "../public/img/redux.png";
 import react from "../public/img/react.png";
-import Popup from "./components/popup";
+import ResetButton from "./components/ResetButton";
 
 const front = {
   css,
@@ -39,17 +39,11 @@ export default function App() {
   console.log("this is the flipped length", flipped.length);
 
   useEffect(() => {
-    resizeBoard();
     setCards(initializeDeck());
   }, []);
 
   useEffect(() => {
     preloadImages();
-  });
-
-  useEffect(() => {
-    const resizeListener = window.addEventListener("resize", resizeBoard);
-    return () => window.removeEventListener("resize", resizeListener);
   });
 
   const handleClick = (id) => {
@@ -100,19 +94,11 @@ export default function App() {
     return flippedCard.type === clickedCard.type;
   };
 
-  const resizeBoard = () => {
-    setDimension(
-      Math.min(
-        document.documentElement.clientWidth,
-        document.documentElement.clientHeight
-      )
-    );
-  };
-
   const playAgain = () => {
     setPlayable(true);
     setFlipped([]);
     setSolved([]);
+    setCards(initializeDeck());
   };
 
   return (
@@ -149,7 +135,7 @@ export default function App() {
         solved={solved}
         // gameOver={gameOver}
       />
-      <Popup
+      <ResetButton
         numSolved={flipped.length}
         numCards={cards.length}
         setPlayable={setPlayable}
