@@ -32,15 +32,8 @@ export default function App() {
   const [level, setLevel] = useState("easy");
   // const [gameOver, setGameOver] = useState([]);
 
-  console.log("cards flipped", flipped);
-  console.log("this is the cards length", cards.length);
-  console.log("this is the solved length", solved.length);
-  console.log("this is the flipped length", flipped.length);
-
   useEffect(() => {
     setCards(initializeDeck(level));
-    console.log("this is the level inside the useEffect", level);
-    console.log(setCards(initializeDeck(level)));
   }, [level]);
 
   useEffect(() => {
@@ -101,7 +94,7 @@ export default function App() {
     setSolved([]);
     setCards(initializeDeck());
   };
-  console.log("the current level is", level);
+
   return (
     <View style={{ width: "100%", alignItems: "center" }}>
       <Text style={{ alignText: "center", fontFamily: "monospace" }}>
