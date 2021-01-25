@@ -6,6 +6,7 @@ const ResetButton = ({ numSolved, numCards, setPlayable, playAgain }) => {
   const openAlert = () => {
     alert("You got em all! Click OK to reset Board");
   };
+
   if (numSolved === numCards && numSolved > 0) {
     playable = false;
     if (!playable) {

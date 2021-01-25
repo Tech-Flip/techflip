@@ -103,7 +103,7 @@ export default function App() {
 
   return (
     <View style={{ width: "100%", alignItems: "center" }}>
-      <Text style={{ alignText: "center" }}>
+      <Text style={{ alignText: "center", fontFamily: "monospace" }}>
         <span
           style={{
             fontWeight: "bold",
