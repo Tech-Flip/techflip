@@ -8,4 +8,4 @@ Created with Expo, react-native, and react
 ![plot](./public/GameView.png)
 
 
-
+To play, run npm install, then expo start
