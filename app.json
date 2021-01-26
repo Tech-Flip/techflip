@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "A fun memory card game",
+    "githubUrl": "https://github.com/Tech-Flip/techflip"
   }
 }

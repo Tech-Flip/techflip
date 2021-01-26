@@ -42,14 +42,10 @@ export default function Card({
   id,
   type,
   flipped,
-  height,
-  width,
   solved,
   disabled,
 }) {
   const animate = useRef(new Animated.Value(0));
-  const frontRef = useRef({});
-  const backRef = useRef({});
 
   const onClick = () => {
     handleClick(id);
@@ -127,8 +123,6 @@ Card.propTypes = {
   flipped: PropTypes.bool.isRequired,
   solved: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
-  height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
   disabled: PropTypes.bool.isRequired,
 };
 
@@ -143,16 +137,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 10,
-  },
-
-  flipContainerFlipped: {
-    // transform: [{ rotateY: "180deg" }],
-  },
-
-  flipper: {
-    // transition: "0.6s",
-    // transformStyle: "preserve-3d",
-    position: "relative",
   },
 
   back: {
