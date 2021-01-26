@@ -33,6 +33,7 @@ export default function App() {
   // const [gameOver, setGameOver] = useState([]);
 
   useEffect(() => {
+    setSolved([]);
     setCards(initializeDeck(level));
   }, [level]);
 
@@ -81,8 +82,12 @@ export default function App() {
     setPlayable(true);
     setFlipped([]);
     setSolved([]);
-    setCards(initializeDeck());
+    setCards(initializeDeck(level));
   };
+
+  if (solved.length === cards.length && solved.length > 0) {
+    alert("👏👏🏻👏🏼 YOU WON!! 👏🏽👏🏾👏🏿");
+  }
 
   return (
     <View
@@ -118,18 +123,6 @@ export default function App() {
         >
           <Text style={styles.appButtonText}> Hard </Text>
         </TouchableOpacity>
-        {/* <Button
-          color="green"
-          title="easy"
-          onPress={() => setLevel("easy")}
-          testID="easy"
-        />
-        <Button
-          color="orange"
-          title="medium"
-          onPress={() => setLevel("medium")}
-        />
-        <Button color="red" title="hard" onPress={() => setLevel("hard")} /> */}
       </View>
       <Board
         cards={cards}

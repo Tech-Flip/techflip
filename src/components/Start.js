@@ -1,11 +1,4 @@
-import {
-  View,
-  Button,
-  StyleSheet,
-  Image,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
 import React from "react";
 const Start = ({ navigation }) => {
   return (
