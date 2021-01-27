@@ -20,8 +20,6 @@ export default function Board({
             key={card.id}
             id={card.id}
             type={card.type}
-            width={100}
-            height={100}
             flipped={flipped.includes(card.id)}
             handleClick={handleClick}
             solved={solved.includes(card.id)}

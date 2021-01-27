@@ -45,7 +45,6 @@ export default function initializeDeck(level) {
     "js",
     "node",
     "fullstack",
-
     "postgres",
     "jquery",
     "github",

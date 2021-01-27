@@ -2,26 +2,7 @@ import React, { useState, useEffect } from "react";
 import Board from "./components/board";
 import initializeDeck from "./deck";
 import { Button, View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import sql from "../public/img/sql.png";
-import css from "../public/img/css.png";
-import fullstack from "../public/img/fullstack.png";
-import js from "../public/img/js.png";
-import node from "../public/img/node.png";
-import postman from "../public/img/postman.png";
-import redux from "../public/img/redux.png";
-import react from "../public/img/react.png";
 import ResetButton from "./components/ResetButton";
-
-const front = {
-  css,
-  fullstack,
-  js,
-  node,
-  postman,
-  redux,
-  sql,
-  react,
-};
 
 export default function App() {
   const [flipped, setFlipped] = useState([]);
