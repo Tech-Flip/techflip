@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import {
   View,
   StyleSheet,
   Image,
   Animated,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import back from "../../../public/img/back.png";

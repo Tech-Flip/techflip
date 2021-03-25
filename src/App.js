@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Board from "./components/board";
 import initializeDeck from "./deck";
-import { Button, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import ResetButton from "./components/ResetButton";
 
 export default function App() {
@@ -11,7 +11,6 @@ export default function App() {
   const [disabled, setDisabled] = useState(false);
   const [playable, setPlayable] = useState(true);
   const [level, setLevel] = useState("easy");
-  // const [gameOver, setGameOver] = useState([]);
 
   useEffect(() => {
     setSolved([]);
@@ -36,14 +35,6 @@ export default function App() {
         setTimeout(resetCards, 300);
       }
     }
-
-    // const gameOverAlert = () => {
-    //   if (solved.length === cards.length) {
-    //     alert("You have won! Click to restart");
-    //     setGameOver([...solved]);
-    //     resetCards();
-    //   }
-    // };
   };
 
   const resetCards = () => {
@@ -112,7 +103,6 @@ export default function App() {
         disabled={disabled}
         solved={solved}
         level={level}
-        // gameOver={gameOver}
       />
       <ResetButton
         numSolved={flipped.length}
